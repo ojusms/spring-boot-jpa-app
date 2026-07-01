@@ -19,7 +19,8 @@ public class JpAappApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
 			//createInstructor(appDAO);
-			findInstructor(appDAO);
+			//findInstructor(appDAO);
+			deleteInstructor(appDAO);
 		};
 	}
 
@@ -40,6 +41,14 @@ public class JpAappApplication {
 		Instructor tempInstructor =	appDAO.findInstructorById(1);
 		System.out.println("tempInstructor: " + tempInstructor);
 		System.out.println("instructor detail only: " + tempInstructor.getInstructorDetail());
+	}
+
+
+	private void deleteInstructor(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("deleting instructor with ID: " + id);
+		appDAO.deleteInstructorById(id);
+		System.out.println("Done!");
 	}
 
 }
