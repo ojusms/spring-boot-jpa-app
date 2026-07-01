@@ -4,9 +4,9 @@ import com.SpringBoot.JPAapp.Entity.Instructor;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public class AppDAOImpl implements AppDAO {
     // define field for EntityManager
     private EntityManager entityManager;

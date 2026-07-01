@@ -1,5 +1,8 @@
 package com.SpringBoot.JPAapp;
 
+import com.SpringBoot.JPAapp.DAO.AppDAO;
+import com.SpringBoot.JPAapp.Entity.Instructor;
+import com.SpringBoot.JPAapp.Entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,10 +16,21 @@ public class JpAappApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(String[] args) {
+	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-			System.out.println("Hello World!");
+			createInstructor(appDAO);
 		};
+	}
+
+	private void createInstructor(AppDAO appDAO) {
+		// define instructor
+		Instructor tempInstructor = new Instructor("John", "Doe", "john@luv2code.com");
+		// define instructor detail
+		InstructorDetail tempInstructorDetail = new InstructorDetail("John Doe YT","Being a John Doe");
+		// set the instructor detail to the instructor
+		tempInstructor.setInstructorDetail(tempInstructorDetail);
+		// save the instructor. This will persist entries in both the tables
+		appDAO.save(tempInstructor);
 	}
 
 }
