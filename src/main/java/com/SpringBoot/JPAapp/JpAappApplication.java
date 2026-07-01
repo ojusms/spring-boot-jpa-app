@@ -18,7 +18,8 @@ public class JpAappApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-			createInstructor(appDAO);
+			//createInstructor(appDAO);
+			findInstructor(appDAO);
 		};
 	}
 
@@ -31,6 +32,14 @@ public class JpAappApplication {
 		tempInstructor.setInstructorDetail(tempInstructorDetail);
 		// save the instructor. This will persist entries in both the tables
 		appDAO.save(tempInstructor);
+	}
+
+	private void findInstructor(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("Finding instructor with ID: " + id);
+		Instructor tempInstructor =	appDAO.findInstructorById(1);
+		System.out.println("tempInstructor: " + tempInstructor);
+		System.out.println("instructor detail only: " + tempInstructor.getInstructorDetail());
 	}
 
 }
