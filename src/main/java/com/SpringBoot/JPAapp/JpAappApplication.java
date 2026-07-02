@@ -20,7 +20,8 @@ public class JpAappApplication {
 		return runner -> {
 			//createInstructor(appDAO);
 			//findInstructor(appDAO);
-			deleteInstructor(appDAO);
+			//deleteInstructor(appDAO);
+			findInstructorDetail(appDAO);
 		};
 	}
 
@@ -49,6 +50,15 @@ public class JpAappApplication {
 		System.out.println("deleting instructor with ID: " + id);
 		appDAO.deleteInstructorById(id);
 		System.out.println("Done!");
+	}
+
+	private void findInstructorDetail(AppDAO appDAO) {
+		int id = 2;
+		System.out.println("Finding InstructorDetail with ID: " + id);
+		InstructorDetail tempInstructorDetail = appDAO.findInstructorDetailById(id);
+		System.out.println("Instructor detail: " + tempInstructorDetail);
+		System.out.println("Only instructor info: " + tempInstructorDetail.getInstructor());
+
 	}
 
 }

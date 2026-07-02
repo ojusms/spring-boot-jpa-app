@@ -1,6 +1,7 @@
 package com.SpringBoot.JPAapp.DAO;
 
 import com.SpringBoot.JPAapp.Entity.Instructor;
+import com.SpringBoot.JPAapp.Entity.InstructorDetail;
 
 public interface AppDAO {
 
@@ -9,4 +10,6 @@ public interface AppDAO {
     Instructor findInstructorById(int theId);
 
     void deleteInstructorById(int theId);
+
+    InstructorDetail findInstructorDetailById(int theId);
 }
