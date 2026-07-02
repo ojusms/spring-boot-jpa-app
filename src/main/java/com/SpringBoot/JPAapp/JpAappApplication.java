@@ -21,7 +21,8 @@ public class JpAappApplication {
 			//createInstructor(appDAO);
 			//findInstructor(appDAO);
 			//deleteInstructor(appDAO);
-			findInstructorDetail(appDAO);
+			//findInstructorDetail(appDAO);
+			deleteInstructorDetail(appDAO);
 		};
 	}
 
@@ -61,4 +62,10 @@ public class JpAappApplication {
 
 	}
 
+	private void deleteInstructorDetail(AppDAO appDAO) {
+		int id = 2;
+		System.out.println("deleting instructor detail with ID: " + id);
+		appDAO.deleteInstructorDetailById(id);
+		System.out.println("Done!");
+	}
 }
