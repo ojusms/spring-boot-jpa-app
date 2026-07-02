@@ -63,7 +63,7 @@ public class JpAappApplication {
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
-		int id = 2;
+		int id = 3;
 		System.out.println("deleting instructor detail with ID: " + id);
 		appDAO.deleteInstructorDetailById(id);
 		System.out.println("Done!");

@@ -49,6 +49,10 @@ public class AppDAOImpl implements AppDAO {
     public void deleteInstructorDetailById(int theId) {
         // find the instructor detail
         InstructorDetail instructorDetail = entityManager.find(InstructorDetail.class, theId);
+        // remove associate between instructor detail and instructor.
+        // Done after removing cascade for remove operation. If this is not done, the instructor detail alone
+        // is not deleted
+        instructorDetail.getInstructor().setInstructorDetail(null);
         // delete the instructor detail. This will also delete the associated instructor table entry
         // due to cascade all in instructor detail class
         entityManager.remove(instructorDetail);
