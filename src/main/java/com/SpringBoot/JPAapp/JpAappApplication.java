@@ -1,6 +1,7 @@
 package com.SpringBoot.JPAapp;
 
 import com.SpringBoot.JPAapp.DAO.AppDAO;
+import com.SpringBoot.JPAapp.Entity.Course;
 import com.SpringBoot.JPAapp.Entity.Instructor;
 import com.SpringBoot.JPAapp.Entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -22,8 +23,28 @@ public class JpAappApplication {
 			//findInstructor(appDAO);
 			//deleteInstructor(appDAO);
 			//findInstructorDetail(appDAO);
-			deleteInstructorDetail(appDAO);
+			//deleteInstructorDetail(appDAO);
+			createInstructorWithCourses(appDAO);
 		};
+	}
+
+	private void createInstructorWithCourses(AppDAO appDAO) {
+		// define instructor
+		Instructor tempInstructor = new Instructor("Susan", "Medum", "susan@luv2code.com");
+		// define instructor detail
+		InstructorDetail tempInstructorDetail = new InstructorDetail("www.youtube.com","Video Games");
+		// set the instructor detail to the instructor
+		tempInstructor.setInstructorDetail(tempInstructorDetail);
+		// add some courses
+		Course tempCourse1 = new Course("Guitar - The ultimate guide");
+		Course tempCourse2 = new Course("Air Hockey - Beginner's guide");
+		// add the courses the instructor
+		tempInstructor.add(tempCourse1);
+		tempInstructor.add(tempCourse2);
+		// save the instructor, which will also save the courses because of CascadeType.PERSIST
+		System.out.println("Saving instructor. . ");
+		appDAO.save(tempInstructor);
+		System.out.println("Done!");
 	}
 
 	private void createInstructor(AppDAO appDAO) {
