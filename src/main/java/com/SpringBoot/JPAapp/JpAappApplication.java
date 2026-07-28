@@ -28,8 +28,19 @@ public class JpAappApplication {
 			//deleteInstructorDetail(appDAO);
 			//createInstructorWithCourses(appDAO);
 			//findInstructorWithCourses(appDAO);
-			findCoursesForInstructor(appDAO);
+			//findCoursesForInstructor(appDAO);
+			findInstructorWithCoursesJoinFetch(appDAO);
 		};
+	}
+
+	private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
+		int theId = 2;
+		// find instructor
+		System.out.println("Finding instructor with ID: " + theId);
+		Instructor instructor = appDAO.findInstructorByIdJoinFetch(theId);
+		System.out.println("Instructor: " + instructor);
+		System.out.println("Instructor Detail: " + instructor.getInstructorDetail());
+		System.out.println("Associated courses: " + instructor.getCourses());
 	}
 
 	private void findCoursesForInstructor(AppDAO appDAO) {

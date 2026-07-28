@@ -78,7 +78,9 @@ public class AppDAOImpl implements AppDAO {
         TypedQuery<Instructor> query = entityManager.createQuery(
                 "select i from Instructor i "
                 + "JOIN FETCH i.courses " // this does EAGER loading even if the fetch type is set to LAZY in the entity
-                + "where i.id = :data", Instructor.class);
+                + "where i.id = :data", Instructor.class); // join reduces the number of queries;
+                // i.e. one for select instructor, one for select courses, one for select instructor_detail.
+                // Join fetch select uses same query to select instructor and whatever is join fetched (courses, detail)
         query.setParameter("data",theId);
         // execute query
         Instructor tempInstructor = query.getSingleResult();
