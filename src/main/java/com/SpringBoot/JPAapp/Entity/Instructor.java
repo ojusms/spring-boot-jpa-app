@@ -32,7 +32,7 @@ public class Instructor {
 
     // set up mapping to Courses entity
     @OneToMany(mappedBy = "instructor",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Course> courses;
 

@@ -1,7 +1,10 @@
 package com.SpringBoot.JPAapp.DAO;
 
+import com.SpringBoot.JPAapp.Entity.Course;
 import com.SpringBoot.JPAapp.Entity.Instructor;
 import com.SpringBoot.JPAapp.Entity.InstructorDetail;
+
+import java.util.List;
 
 public interface AppDAO {
 
@@ -14,4 +17,6 @@ public interface AppDAO {
     InstructorDetail findInstructorDetailById(int theId);
 
     void deleteInstructorDetailById(int theId);
+
+    List<Course> findCoursesByInstructorId(int theId);
 }
