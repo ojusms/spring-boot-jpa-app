@@ -71,4 +71,17 @@ public class AppDAOImpl implements AppDAO {
         List<Course> courses = query.getResultList();
         return courses;
     }
+
+    @Override
+    public Instructor findInstructorByIdJoinFetch(int theId) {
+        // create query
+        TypedQuery<Instructor> query = entityManager.createQuery(
+                "select i from Instructor i "
+                + "JOIN FETCH i.courses " // this does EAGER loading even if the fetch type is set to LAZY in the entity
+                + "where i.id = :data", Instructor.class);
+        query.setParameter("data",theId);
+        // execute query
+        Instructor tempInstructor = query.getSingleResult();
+        return tempInstructor;
+    }
 }
