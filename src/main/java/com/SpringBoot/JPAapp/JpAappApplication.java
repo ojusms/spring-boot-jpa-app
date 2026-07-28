@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class JpAappApplication {
 
@@ -25,8 +27,22 @@ public class JpAappApplication {
 			//findInstructorDetail(appDAO);
 			//deleteInstructorDetail(appDAO);
 			//createInstructorWithCourses(appDAO);
-			findInstructorWithCourses(appDAO);
+			//findInstructorWithCourses(appDAO);
+			findCoursesForInstructor(appDAO);
 		};
+	}
+
+	private void findCoursesForInstructor(AppDAO appDAO) {
+		int theId = 2;
+		// find instructor
+		System.out.println("Finding instructor with ID: " + theId);
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+		System.out.println(tempInstructor);
+		// find courses for instructor
+		List<Course> courses = appDAO.findCoursesByInstructorId(theId);
+		// associate courses and instructor
+		tempInstructor.setCourses(courses);
+		System.out.println("The courses are: " + tempInstructor.getCourses());
 	}
 
 	private void findInstructorWithCourses(AppDAO appDAO) {
