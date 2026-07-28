@@ -30,8 +30,23 @@ public class JpAappApplication {
 			//findInstructorWithCourses(appDAO);
 			//findCoursesForInstructor(appDAO);
 			//findInstructorWithCoursesJoinFetch(appDAO);
-			updateInstructor(appDAO);
+			//updateInstructor(appDAO);
+			updateCourse(appDAO);
 		};
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		int theId = 10;
+		// find course
+		System.out.println("Finding course with ID: " +theId);
+		Course tempCourse = appDAO.findCoursebyId(theId);
+		System.out.println(tempCourse);
+		// update course
+		System.out.println("Updating course");
+		tempCourse.setTitle("Foosball 101");
+		appDAO.update(tempCourse);
+		System.out.println("Done");
+
 	}
 
 	private void updateInstructor(AppDAO appDAO) {
