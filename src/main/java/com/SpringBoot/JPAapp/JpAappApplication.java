@@ -24,8 +24,18 @@ public class JpAappApplication {
 			//deleteInstructor(appDAO);
 			//findInstructorDetail(appDAO);
 			//deleteInstructorDetail(appDAO);
-			createInstructorWithCourses(appDAO);
+			//createInstructorWithCourses(appDAO);
+			findInstructorWithCourses(appDAO);
 		};
+	}
+
+	private void findInstructorWithCourses(AppDAO appDAO) {
+		int theId = 2;
+		System.out.println("Finding instructor with ID: " + theId);
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+		System.out.println(tempInstructor);
+		System.out.println("Courses for instructor: " + tempInstructor.getCourses());
+
 	}
 
 	private void createInstructorWithCourses(AppDAO appDAO) {
