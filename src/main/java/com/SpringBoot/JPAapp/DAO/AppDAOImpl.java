@@ -39,6 +39,11 @@ public class AppDAOImpl implements AppDAO {
     public void deleteInstructorById(int theId) {
         // find the instructor
         Instructor tempInstructor = entityManager.find(Instructor.class, theId);
+        // update to remove association with Courses field and db entry.
+        // If not done, throws and error for foreign key constraint violation
+        List<Course> courses = tempInstructor.getCourses();
+        for (Course tempCourse : courses)
+            tempCourse.setInstructor(null);
         // delete th instructor. This will also delete the instructor detail table entry
         entityManager.remove(tempInstructor);
     }
