@@ -22,8 +22,16 @@ public class JpAappApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-			saveCourseAndReviews(appDAO);
+			//saveCourseAndReviews(appDAO);
+			findCourseWithReviews(appDAO);
 		};
+	}
+
+	private void findCourseWithReviews(AppDAO appDAO) {
+		int theId = 10;
+		Course course = appDAO.getCourseAndReviewsByCourseId(theId);
+		System.out.println(course);
+		System.out.println(course.getReviews());
 	}
 
 	private void saveCourseAndReviews(AppDAO appDAO) {
