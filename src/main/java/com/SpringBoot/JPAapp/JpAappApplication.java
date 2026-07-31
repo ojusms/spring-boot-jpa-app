@@ -4,6 +4,7 @@ import com.SpringBoot.JPAapp.DAO.AppDAO;
 import com.SpringBoot.JPAapp.Entity.Course;
 import com.SpringBoot.JPAapp.Entity.Instructor;
 import com.SpringBoot.JPAapp.Entity.InstructorDetail;
+import com.SpringBoot.JPAapp.Entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,19 +22,24 @@ public class JpAappApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-			//createInstructor(appDAO);
-			//findInstructor(appDAO);
-			//deleteInstructor(appDAO);
-			//findInstructorDetail(appDAO);
-			//deleteInstructorDetail(appDAO);
-			//createInstructorWithCourses(appDAO);
-			//findInstructorWithCourses(appDAO);
-			//findCoursesForInstructor(appDAO);
-			//findInstructorWithCoursesJoinFetch(appDAO);
-			//updateInstructor(appDAO);
-			//updateCourse(appDAO);
-			//deleteCourse(appDAO);
+			saveCourseAndReviews(appDAO);
 		};
+	}
+
+	private void saveCourseAndReviews(AppDAO appDAO) {
+		// create course
+		Course tempCourse = new Course("Space Pinball - How to score many points");
+		// add reviews
+		tempCourse.addReview(new Review("Great course"));
+		tempCourse.addReview(new Review("I like it"));
+		tempCourse.addReview(new Review("What a dumb course, you suck"));
+		// save the course
+		System.out.println("Saving");
+		System.out.println(tempCourse);
+		System.out.println(tempCourse.getReviews());
+		appDAO.save(tempCourse);
+		System.out.println("Done");
+
 	}
 
 	private void deleteCourse(AppDAO appDAO) {
