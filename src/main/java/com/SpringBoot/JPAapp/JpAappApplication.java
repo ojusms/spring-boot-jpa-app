@@ -32,7 +32,7 @@ public class JpAappApplication {
 			//findInstructorWithCoursesJoinFetch(appDAO);
 			//updateInstructor(appDAO);
 			//updateCourse(appDAO);
-			deleteCourse(appDAO);
+			//deleteCourse(appDAO);
 		};
 	}
 

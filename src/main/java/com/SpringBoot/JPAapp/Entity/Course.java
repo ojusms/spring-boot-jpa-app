@@ -2,6 +2,9 @@ package com.SpringBoot.JPAapp.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "course")
 public class Course {
@@ -18,6 +21,11 @@ public class Course {
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // cascade all (including delete) because we want
+    // all reviews of a course to get deleted if a course gets deleted
+    @JoinColumn(name = "course_id")
+    private List<Review> reviews;
 
     // define constructors
 
@@ -51,6 +59,21 @@ public class Course {
 
     public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    // convenience method
+    public void addReview(Review theReview) {
+        if (reviews==null)
+            reviews = new ArrayList<>();
+        reviews.add(theReview);
     }
 
     // define toString()
