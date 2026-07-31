@@ -23,8 +23,16 @@ public class JpAappApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
 			//saveCourseAndReviews(appDAO);
-			findCourseWithReviews(appDAO);
+			//findCourseWithReviews(appDAO);
+			deleteCourseAndReviews(appDAO);
 		};
+	}
+
+	private void deleteCourseAndReviews(AppDAO appDAO) {
+		int theId = 10;
+		System.out.println("Deleting course with ID: "+theId);
+		appDAO.deleteCourseById(theId); // cascade type ALL for course.reviews ensures all associate reviews get deleted
+		System.out.println("Done");
 	}
 
 	private void findCourseWithReviews(AppDAO appDAO) {
