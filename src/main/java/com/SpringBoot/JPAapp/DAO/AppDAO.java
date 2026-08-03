@@ -3,6 +3,7 @@ package com.SpringBoot.JPAapp.DAO;
 import com.SpringBoot.JPAapp.Entity.Course;
 import com.SpringBoot.JPAapp.Entity.Instructor;
 import com.SpringBoot.JPAapp.Entity.InstructorDetail;
+import com.SpringBoot.JPAapp.Entity.Student;
 
 import java.util.List;
 
@@ -35,4 +36,6 @@ public interface AppDAO {
     Course getCourseAndReviewsByCourseId(int theId);
 
     Course findCourseAndStudentsByCourseId(int theId);
+
+    Student findStudentAndCoursesByStudentId(int theId);
 }

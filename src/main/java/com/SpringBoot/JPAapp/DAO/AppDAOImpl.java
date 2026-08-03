@@ -3,6 +3,7 @@ package com.SpringBoot.JPAapp.DAO;
 import com.SpringBoot.JPAapp.Entity.Course;
 import com.SpringBoot.JPAapp.Entity.Instructor;
 import com.SpringBoot.JPAapp.Entity.InstructorDetail;
+import com.SpringBoot.JPAapp.Entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
@@ -143,5 +144,17 @@ public class AppDAOImpl implements AppDAO {
         //execute query
         Course course = query.getSingleResult();
         return course;
+    }
+
+    @Override
+    public Student findStudentAndCoursesByStudentId(int theId) {
+        // crete query
+        TypedQuery<Student> query = entityManager.createQuery("select s from Student s "
+                + "JOIN FETCH s.courses "
+                + "where s.id = :data", Student.class);
+        query.setParameter("data", theId);
+        // execute query
+        Student student = query.getSingleResult();
+        return student;
     }
 }
