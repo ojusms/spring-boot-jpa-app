@@ -1,10 +1,7 @@
 package com.SpringBoot.JPAapp;
 
 import com.SpringBoot.JPAapp.DAO.AppDAO;
-import com.SpringBoot.JPAapp.Entity.Course;
-import com.SpringBoot.JPAapp.Entity.Instructor;
-import com.SpringBoot.JPAapp.Entity.InstructorDetail;
-import com.SpringBoot.JPAapp.Entity.Review;
+import com.SpringBoot.JPAapp.Entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,8 +21,28 @@ public class JpAappApplication {
 		return runner -> {
 			//saveCourseAndReviews(appDAO);
 			//findCourseWithReviews(appDAO);
-			deleteCourseAndReviews(appDAO);
+			//deleteCourseAndReviews(appDAO);
+			createCourseAndStudents(appDAO);
 		};
+	}
+
+	private void createCourseAndStudents(AppDAO appDAO) {
+		// create course
+		Course tempCourse = new Course("Pacman - How to score many points");
+
+		// create students
+		Student tempStudent = new Student("John","Doe","john@student.com");
+		Student tempStudent2 = new Student("Mary","Sue","mary@student.com");
+
+		// add students to course
+		tempCourse.addStudent(tempStudent);
+		tempCourse.addStudent(tempStudent2);
+
+		// save course
+		System.out.println("Saving course: "+tempCourse);
+		System.out.println("saving students: "+tempCourse.getStudents());
+		appDAO.save(tempCourse);
+		System.out.println("Done!");
 	}
 
 	private void deleteCourseAndReviews(AppDAO appDAO) {
