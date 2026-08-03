@@ -81,6 +81,10 @@ public class Student {
         if (courses == null)
             courses = new ArrayList<>();
         courses.add(theCourse);
+        theCourse.addStudent(this); // this is necessary to propagate changes
+        // from Student side to Course side since Student is the non-owning inverse side in the ManyToMany
+        // bidirectional mapping. Without this, the course_student join table in DB would not get updated
+        // when calling addCoursesToStudent() in the main app.
     }
 
     @Override

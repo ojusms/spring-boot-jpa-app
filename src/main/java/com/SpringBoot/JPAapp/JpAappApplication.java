@@ -24,8 +24,26 @@ public class JpAappApplication {
 			//deleteCourseAndReviews(appDAO);
 			//createCourseAndStudents(appDAO);
 			//findCourseWithStudents(appDAO);
-			findStudentWithCourses(appDAO);
+			//findStudentWithCourses(appDAO);
+			addCoursesToStudent(appDAO);
 		};
+	}
+
+	private void addCoursesToStudent(AppDAO appDAO) {
+		int theId = 2;
+		// find student
+		Student tempStudent = appDAO.findStudentAndCoursesByStudentId(theId);
+		// create courses
+		Course tempCourse1 = new Course("Pinball - The ultimate guide");
+		Course tempCourse2 = new Course("Xbox - Guide to game development");
+		// add courses to student
+		tempStudent.addCourse(tempCourse1);
+		tempStudent.addCourse(tempCourse2);
+		// update student
+		System.out.println("Updating student " + tempStudent);
+		appDAO.update(tempStudent);
+		System.out.println("Done!");
+
 	}
 
 	private void findStudentWithCourses(AppDAO appDAO) {
