@@ -25,7 +25,8 @@ public class JpAappApplication {
 			//createCourseAndStudents(appDAO);
 			//findCourseWithStudents(appDAO);
 			//findStudentWithCourses(appDAO);
-			addCoursesToStudent(appDAO);
+			//addCoursesToStudent(appDAO);
+			deleteCourse(appDAO);
 		};
 	}
 
