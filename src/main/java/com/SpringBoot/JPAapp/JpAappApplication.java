@@ -22,8 +22,18 @@ public class JpAappApplication {
 			//saveCourseAndReviews(appDAO);
 			//findCourseWithReviews(appDAO);
 			//deleteCourseAndReviews(appDAO);
-			createCourseAndStudents(appDAO);
+			//createCourseAndStudents(appDAO);
+			findCourseWithStudents(appDAO);
 		};
+	}
+
+	private void findCourseWithStudents(AppDAO appDAO) {
+		int theId = 10;
+		System.out.println("Finding course with ID: "+theId);
+		Course theCourse = appDAO.findCourseAndStudentsByCourseId(theId);
+		System.out.println(theCourse);
+		System.out.println("Students: " + theCourse.getStudents());
+		
 	}
 
 	private void createCourseAndStudents(AppDAO appDAO) {
