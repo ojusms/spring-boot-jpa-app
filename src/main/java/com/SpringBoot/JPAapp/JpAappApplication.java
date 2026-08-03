@@ -26,8 +26,16 @@ public class JpAappApplication {
 			//findCourseWithStudents(appDAO);
 			//findStudentWithCourses(appDAO);
 			//addCoursesToStudent(appDAO);
-			deleteCourse(appDAO);
+			//deleteCourse(appDAO);
+			deleteStudent(appDAO);
 		};
+	}
+
+	private void deleteStudent(AppDAO appDAO) {
+		int theId = 2;
+		System.out.println("Deleting student with ID: "+theId);
+		appDAO.deleteStudentById(theId);
+		System.out.println("Done!");
 	}
 
 	private void addCoursesToStudent(AppDAO appDAO) {

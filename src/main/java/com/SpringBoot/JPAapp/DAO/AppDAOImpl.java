@@ -163,4 +163,19 @@ public class AppDAOImpl implements AppDAO {
     public void update(Student tempStudent) {
         entityManager.merge(tempStudent);
     }
+
+    @Override
+    @Transactional
+    public void deleteStudentById(int theId) {
+        // find student
+        Student tempStudent = entityManager.find(Student.class,theId);
+        // find courses
+        List<Course> courses = tempStudent.getCourses();
+        // break association (since non-owning inverse side of ManyToMany bidirectional mapping
+        for (Course tempCourse : courses)
+            tempCourse.getStudents().remove(tempStudent);
+
+        // delete student
+        entityManager.remove(tempStudent);
+    }
 }
